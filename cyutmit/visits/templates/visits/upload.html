@@ -3,19 +3,37 @@
 <head>
 <title>拜訪紀錄單</title>
 <meta charset=utf-8>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<h1>upload file</h1>
-<form method=post action={% url 'visits:upload' %} enctype=multipart/form-data>
-{% csrf_token %}
-<input type=file name=uploadFile required>
-<label for=publicRead>Public Read ?</label><input id=publicRead type=checkbox name=fileUrl>
-<input type=submit name=submit>
-</form>
-{% if fileUrl %}
-  <p><a href="{{fileUrl}}">file link </a></p>
-  <p><img src="{{fileUrl}}"></p>
-{% endif %}
+<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+	<h1>upload file</h1>
+	<form class="form-inline" method=post action={% url 'visits:upload' %} enctype=multipart/form-data>
+	{% csrf_token %}
+	<div class="form-group">
+	<input type=file name=uploadFile required>
+	</div>
+	<div class="form-group">
+	<label>
+	<input type=checkbox name=fileUrl> Public Read ?
+	</label>
+	</div>
+	<input type=submit name=submit>
+	</form>
+	
+	{% if fileUrl %}
+	  <p><a href="{{fileUrl}}">file link </a></p>
+	  <p><img class="img-responsive  " src="{{fileUrl}}"></p>
+	{% endif %}
 
+</div>
 </body>
 </html>
