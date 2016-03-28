@@ -126,3 +126,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
+
+GS_ACCESS_KEY = 'GOOG2TIANUZTOWVLJH5C'
+GS_SECRET_KEY = '/D7NU3SAkdX6ivxbRFScY9s6ZrW62Ga43hi5uxeh'
+GS_BUCKET_NAME = 'testisc'
+GS_URL = 'https://storage.googleapis.com/' + GS_BUCKET_NAME + '/'

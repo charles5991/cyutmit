@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<title>拜訪紀錄單</title>
+<meta charset=utf-8>
+</head>
+<body>
+<h1>upload file</h1>
+<form method=post action={% url 'visits:upload' %} enctype=multipart/form-data>
+{% csrf_token %}
+<input type=file name=uploadFile required>
+<label for=publicRead>Public Read ?</label><input id=publicRead type=checkbox name=fileUrl>
+<input type=submit name=submit>
+</form>
+{% if fileUrl %}
+  <p><a href="{{fileUrl}}">file link </a></p>
+  <p><img src="{{fileUrl}}"></p>
+{% endif %}
+
+</body>
+</html>
