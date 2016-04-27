@@ -1,0 +1,45 @@
+{% extends 'main/main.html' %}
+{% block contentName %}最新消息{% endblock %}
+{% block content %}
+
+<form method=get action={% url 'news:searchNews' %}>
+  <input id=searchBox type=text name=searchTerm>
+  <input type=submit value=查詢>
+</form>
+<br>
+<table id=newsTable>
+  <tr>
+    <th>標題</th>
+    <th>發布時間</th>
+  </tr>
+    {% for news in newsList %}
+  <tr>
+    {% if user.username == 'admin' %}
+      <td><a href={% url 'news:editNews' news.id %}>{{news.title}}</a></td>
+    {% else %}
+      <td><a href={% url 'news:viewNews' news.id %}>{{news.title}}</a></td>
+    {% endif %}
+    <td>{{news.postTime}}</td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+<div class=pagination>
+  <span class=step-links>
+    {% if newsList.has_previous %}
+      <a href=?page={{newsList.previous_page_number}}>上一頁</a>
+    {% endif %}
+    <span class=current>
+      {{newsList.number}}/{{newsList.paginator.num_pages}}
+    </span>
+    {% if newsList.has_next %}
+      <a href=?page={{newsList.next_page_number}}>下一頁</a>
+    {% endif %}
+  </span>
+</div>
+
+{% if user.username == 'admin' %}
+  <p><a href={% url 'news:addNews' %}>新增消息</a></p>
+{% endif %}
+
+{% endblock %}

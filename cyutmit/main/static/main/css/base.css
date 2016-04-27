@@ -1,0 +1,38 @@
+* {
+ box-sizing: border-box
+}
+
+body {
+  margin: 0 auto;
+  /* background: lightgray; */
+}
+
+div#heading {
+  padding: 20px;
+  text-align: right;
+  /* border: 1px solid red; */
+}
+
+nav {
+  float: left;
+  width: 20%;
+  padding: 20px;
+  /* border: 1px solid blue; */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin-bottom: 10px;
+  /* border: 1px solid red; */
+}
+
+div#content {
+  float: left;
+  width: 80%;
+  padding: 20px;
+  /* border: 1px solid yellow; */
+}

@@ -1,0 +1,13 @@
+{% extends 'main/main.html' %}
+{% block contentName %}最新消息內容{% endblock %}
+{% block content %}
+
+<p>發布時間：{{news.postTime}}</p>
+<p id=title>標題：{{news.title}}</p>
+<p>內容：{{news.content | safe}}</p>
+
+{% if user.username == 'admin' %}
+  <p><a href=#>儲存</a>&nbsp;&nbsp;&nbsp;<a href=#>刪除</a></p>
+{% endif %}
+
+{% endblock %}

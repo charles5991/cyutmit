@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% block menu %}
+
+{% if user.username == 'admin' %}
+  <ul>
+
+    <li><a href={% url 'news:news' %}>最新消息</a></li>
+  </ul>
+{% else %}
+  <ul>
+    <li><a href={% url 'news:news' %}>最新消息</a></li>
+  </ul>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'main/main.html' %}
+{% load staticfiles %}
+{% block contentName %}修改消息{% endblock %}
+{% block content %}
+
+<form method=post action={% url 'news:editNews' news.id %}>
+  {% csrf_token %}
+  {{form.as_p}}
+ <p><input type=submit value=儲存>
+</form>
+<input id=selectFile type=file accept="image/*">
+
+
+<form id=deleteNews method=post action={% url 'news:deleteNews' news.id %}>
+  {% csrf_token %}
+ <p><input type=submit value=刪除>
+</form>
+
+<p><a href={% url 'news:news' %}>放棄</a></p> 
+
+{% endblock %}
+
+{% block script %}
+<script src={% static 'news/js/news.js' %}></script>
+<script src="{% static 'main/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'main/js/tinymceInit.js' %}"></script>
+
+<script>
+{% include 'main/upload.js' %}
+</script>
+{% endblock %}
