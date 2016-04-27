@@ -1,15 +1,7 @@
-<!doctype html>
-<html>
-<head>
-<title>拜訪紀錄單</title>
-<meta charset=utf-8>
-</head>
-<body>
-<h1>朝陽科技大學資訊學院</h1>
-<h2>【朝陽MIT資訊創新服務計畫】</h2>
-<h2>拜訪單</h2>
-<p><a href="{% url 'visits:upload' %}">upload</a></p>
-<p><a href="{% url 'visits:create' %}">create</a></p>
+{% extends 'main/main.html' %}
+{% block contentName %}拜訪單{% endblock %}
+{% block content %}
+<p><a href="{% url 'visits:create' %}">新增拜訪單</a></p>
 <table>
   <tr>
     <th>拜訪機構</th><th>拜訪日期</th><th>摘要</th>
@@ -17,11 +9,9 @@
   {% for visit in visits %}
   <tr>
     <td><a href="{% url 'visits:getVisit' visit.id %}">{{visit.company}}</a></td>
-    <td>{{visit.visitDate}}</td>
-    <td>{{visit.outline}}</td>
+    <td>{{visit.date}}</td>
+    <td>{{visit.suggest}}</td>
   </tr>
   {% endfor %}
 </table>
-
-</body>
-</html>
+{% endblock %}
