@@ -3,12 +3,13 @@
 
 {% if user.username == 'admin' %}
   <ul>
-
     <li><a href={% url 'news:news' %}>最新消息</a></li>
+    <li><a href={% url 'visits:visits' %}>拜訪單</a></li>
   </ul>
 {% else %}
   <ul>
     <li><a href={% url 'news:news' %}>最新消息</a></li>
+    <li><a href={% url 'visits:visits' %}>拜訪單</a></li>
   </ul>
 {% endif %}
 
