@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^', include('main.urls', namespace='main')),
     url(r'^news/', include('news.urls', namespace='news')),
     url(r'^visits/', include('visits.urls', namespace='visits')),
+    url(r'^sysSettings/', include('sysSettings.urls', namespace='sysSettings')),
 ]

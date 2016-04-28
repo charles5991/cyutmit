@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'visits',
     'news',
+    'sysSettings',
 ]
 
 MIDDLEWARE_CLASSES = [
