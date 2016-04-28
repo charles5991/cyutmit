@@ -15,9 +15,10 @@
 
   <div id=heading>
     {% if user.is_authenticated %}
-      <a href=#>登出 ({{user.username}})</a>
+      <a href={% url 'accounts:userLogout' %}>登出 ({{user.username}})</a>
     {% else %}
-      <a href=#>登入</a>
+      <a href={% url 'accounts:userLogin' %}>登入</a>
+      <a href={% url 'accounts:register' %}>註冊</a>
     {% endif %}
   </div>  <!-- heading -->
   

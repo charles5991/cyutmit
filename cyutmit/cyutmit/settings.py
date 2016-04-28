@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'visits',
     'news',
     'sysSettings',
+    'teachers',
+    'companys',
+    'personnels',
+    'accounts',
 ]
 
 MIDDLEWARE_CLASSES = [

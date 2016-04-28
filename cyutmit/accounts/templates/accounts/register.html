@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<title>朝陽MIT</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<meta charset=utf-8>
+</head>
+<body>
+<div class="main-content">
+
+        <!-- You only need this form and the form-register.css -->
+
+        <form class="form-register" method=post action={% url 'accounts:register' %}>
+        
+        {% csrf_token %}
+
+            <div class="form-register-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>歡迎加入會員！</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            {{ userForm.as_p }}
+                            {{ userProfileForm.as_p }}
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit">建立</button>
+                    </div>
+
+                </div>
+            </div>
+    
+            </div>
+
+        </form>
+
+    </div>
+</body>
+</html>
