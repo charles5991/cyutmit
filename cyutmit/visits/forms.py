@@ -1,7 +1,10 @@
 from django import forms
 from django.forms.widgets import TextInput, Textarea
 
-from visits.models import VisitModel, DemandCategory, Department, Teacher, Company, Personnel, ActivityType, ResearchArea
+from visits.models import Visit
+from sysSettings.models import DemandCategory, Department, ResearchArea, ActivityType
+from companys.models import Company, Personnel
+from teachers.models import Teacher
 
 
 class VisitForm(forms.ModelForm):
@@ -26,5 +29,5 @@ class VisitForm(forms.ModelForm):
     suggest = forms.CharField(label='其他建議', widget=Textarea(attrs={'rows':5, 'cols':20}), required=False)
     
     class Meta:
-        model = VisitModel
+        model = Visit
         fields = '__all__'

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'sysSettings',
     'teachers',
     'companys',
-    'personnels',
     'accounts',
 ]
 

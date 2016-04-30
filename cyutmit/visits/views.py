@@ -5,12 +5,12 @@ from django.shortcuts import render, redirect
 from cyutmit.settings import GS_ACCESS_KEY, GS_SECRET_KEY, GS_BUCKET_NAME, \
     GS_URL
 from visits.forms import VisitForm
-from visits.models import DemandCategory, Department, Teacher, VisitModel
+from visits.models import Visit
 
 
 # Create your views here.
 def visits(request):
-    return render(request, 'visits/visits.html', {'visits':VisitModel.objects.all()})
+    return render(request, 'visits/visits.html', {'visits':Visit.objects.all()})
 
 
 def create(request):
@@ -29,7 +29,7 @@ def create(request):
 
 
 def getVisit(request, visitID):
-    visit = VisitModel.objects.get(id=visitID)
+    visit = Visit.objects.get(id=visitID)
     visit = VisitForm(instance=visit)
     return render(request, 'visits/visit.html', {'visitForm':visit})
 

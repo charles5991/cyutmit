@@ -2,8 +2,9 @@ import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cyutmit.settings')
 import django
 django.setup()
-
-from visits.models import VisitModel, DemandCategory, Department, Teacher, Company, Personnel, ActivityType, ResearchArea
+from sysSettings.models import DemandCategory, Department, ActivityType, ResearchArea
+from teachers.models import Teacher
+from companys.models import Company, Personnel
 import random
 
 def populate():

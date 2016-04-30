@@ -11,5 +11,4 @@ urlpatterns = [
     url(r'^sysSettings/', include('sysSettings.urls', namespace='sysSettings')),
     url(r'^teachers/', include('teachers.urls', namespace='teachers')),
     url(r'^companys/', include('companys.urls', namespace='companys')),
-    url(r'^personnels/', include('personnels.urls', namespace='personnels')),
 ]
