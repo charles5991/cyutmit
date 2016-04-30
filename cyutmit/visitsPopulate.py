@@ -56,7 +56,27 @@ def populate():
         
     # Print ActivityType
     for  activityType in ActivityType.objects.all():
-        print('活動:'+activityType.name)      
+        print('活動:'+activityType.name)
+        
+    # Print Depeatment
+    for  department in Department.objects.all():
+        print('系所:'+department.name)
+        
+    # Print ResearchAreah
+    for  researchAreah in ResearchArea.objects.all():
+        print('研究領域:'+researchAreah.name)
+        
+    # Print Teacher
+    for  teacher in Teacher.objects.all():
+        print('教師:'+teacher.name)
+        
+    # Print Company
+    for  company in Company.objects.all():
+        print('廠商:'+company.name)
+        
+    # Print Personnel
+    for  personnel in Personnel.objects.all():
+        print('聯絡人:'+personnel.name)                     
     
 def addDemandCategory(name):
     demandCategory = DemandCategory.objects.get_or_create(name=name)[0]
