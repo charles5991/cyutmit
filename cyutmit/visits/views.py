@@ -1,6 +1,6 @@
 import boto
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from cyutmit.settings import GS_ACCESS_KEY, GS_SECRET_KEY, GS_BUCKET_NAME, \
     GS_URL
@@ -64,3 +64,12 @@ def upload(request):
     request.session['fileUrl'] = fpic.key
     request.session['publicRead'] = publicRead
     return redirect(reverse('visits:upload'))
+
+
+def deleteVisit(request, visitID):
+    if request.method=='GET':
+        return visits(request)
+    # POST
+    category = get_object_or_404(Visit, id=visitID)
+    category.delete()
+    return redirect('visits:visits')

@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^create/$', views.create, name='create'),
     url(r'^(?P<visitID>[0-9]+)/$', views.getVisit, name='getVisit'),
     url(r'^upload/$', views.upload, name='upload'),
+    url(r'^deleteVisit/(?P<visitID>[0-9]+)/$', views.deleteVisit, name='deleteVisit'),
 ]

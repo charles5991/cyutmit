@@ -11,6 +11,12 @@
     <td><a href="{% url 'visits:getVisit' visit.id %}">{{visit.company}}</a></td>
     <td>{{visit.date}}</td>
     <td>{{visit.suggest}}</td>
+    <td>
+      <form method=post action={% url 'visits:deleteVisit' visit.id %}>
+        {% csrf_token %}
+        <input type=submit value=刪除>
+      </form>
+    </td>
   </tr>
   {% endfor %}
 </table>
