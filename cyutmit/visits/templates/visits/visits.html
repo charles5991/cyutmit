@@ -1,7 +1,10 @@
 {% extends 'main/main.html' %}
 {% block contentName %}拜訪單{% endblock %}
 {% block content %}
-<p><a href="{% url 'visits:create' %}">新增拜訪單</a></p>
+
+{% if user.username == 'admin' %}
+  <p><a href="{% url 'visits:create' %}">新增拜訪單</a></p>
+{% endif %}
 <table>
   <tr>
     <th>拜訪機構</th><th>拜訪日期</th><th>摘要</th>
@@ -11,12 +14,14 @@
     <td><a href="{% url 'visits:getVisit' visit.id %}">{{visit.company}}</a></td>
     <td>{{visit.date}}</td>
     <td>{{visit.suggest}}</td>
+    {% if user.username == 'admin' %}
     <td>
       <form method=post action={% url 'visits:deleteVisit' visit.id %}>
         {% csrf_token %}
         <input type=submit value=刪除>
       </form>
     </td>
+    {% endif %}
   </tr>
   {% endfor %}
 </table>

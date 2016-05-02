@@ -6,6 +6,8 @@ from cyutmit.settings import GS_ACCESS_KEY, GS_SECRET_KEY, GS_BUCKET_NAME, \
     GS_URL
 from visits.forms import VisitForm
 from visits.models import Visit
+from main.views import admin_required
+from main.views import manager_required
 
 
 # Create your views here.
@@ -65,7 +67,7 @@ def upload(request):
     request.session['publicRead'] = publicRead
     return redirect(reverse('visits:upload'))
 
-
+@admin_required
 def deleteVisit(request, visitID):
     if request.method=='GET':
         return visits(request)
