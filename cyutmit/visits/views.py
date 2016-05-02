@@ -1,7 +1,8 @@
 import boto
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from cyutmit.settings import GS_ACCESS_KEY, GS_SECRET_KEY, GS_BUCKET_NAME, \
     GS_URL
 from visits.forms import VisitForm
@@ -12,7 +13,8 @@ from main.views import manager_required
 
 # Create your views here.
 def visits(request):
-    return render(request, 'visits/visits.html', {'visits':Visit.objects.all()})
+    visits = paginating(request, Visit.objects.all())
+    return render(request, 'visits/visits.html', {'visits':visits})
 
 
 def create(request):
@@ -67,6 +69,7 @@ def upload(request):
     request.session['publicRead'] = publicRead
     return redirect(reverse('visits:upload'))
 
+
 @admin_required
 def deleteVisit(request, visitID):
     if request.method=='GET':
@@ -75,3 +78,22 @@ def deleteVisit(request, visitID):
     category = get_object_or_404(Visit, id=visitID)
     category.delete()
     return redirect('visits:visits')
+
+def paginating(request, allVisits):
+    paginator = Paginator(allVisits, 10) # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        visits = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        visits = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        visits = paginator.page(paginator.num_pages)
+    return visits
+
+
+def searchVisit(request):
+    searchTerm = request.GET.get('searchTerm')
+    visits = paginating(request, Visit.objects.filter(Q(address__icontains=searchTerm) | Q(suggest__icontains=searchTerm)))
+    return render(request, 'visits/visits.html', {'visits':visits})

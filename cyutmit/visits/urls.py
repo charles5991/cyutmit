@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^(?P<visitID>[0-9]+)/$', views.getVisit, name='getVisit'),
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^deleteVisit/(?P<visitID>[0-9]+)/$', views.deleteVisit, name='deleteVisit'),
+    url(r'searchVisit/', views.searchVisit, name='searchVisit'),
 ]

@@ -2,9 +2,15 @@
 {% block contentName %}拜訪單{% endblock %}
 {% block content %}
 
+
 {% if user.username == 'admin' %}
   <p><a href="{% url 'visits:create' %}">新增拜訪單</a></p>
 {% endif %}
+
+<form method=get action={% url 'visits:searchVisit' %}>
+  <input id=searchBox type=text name=searchTerm>
+  <input type=submit value=查詢>
+</form>
 <table>
   <tr>
     <th>拜訪機構</th><th>拜訪日期</th><th>摘要</th>
@@ -25,4 +31,18 @@
   </tr>
   {% endfor %}
 </table>
+<br>
+<div class=pagination>
+  <span class=step-links>
+    {% if visits.has_previous %}
+      <a href=?page={{visits.previous_page_number}}>上一頁</a>
+    {% endif %}
+    <span class=current>
+      {{visits.number}}/{{visits.paginator.num_pages}}
+    </span>
+    {% if visits.has_next %}
+      <a href=?page={{visits.next_page_number}}>下一頁</a>
+    {% endif %}
+  </span>
+</div>
 {% endblock %}
