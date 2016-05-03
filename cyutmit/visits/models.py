@@ -27,7 +27,7 @@ class Visit(models.Model):
     followUpCompany = models.ForeignKey(Company) #可邀請的公司
     activityType= models.ManyToManyField(ActivityType) #活動
     suggest = models.TextField() #其他建議
-    photoUrl = models.URLField(blank=True, null=True) #拜訪照片
+    photoUrl = models.CharField(max_length=1000, blank=True, null=True) #拜訪照片
     
     def __str__(self):
         return self.company
