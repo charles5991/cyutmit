@@ -95,5 +95,5 @@ def paginating(request, allVisits):
 
 def searchVisit(request):
     searchTerm = request.GET.get('searchTerm')
-    visits = paginating(request, Visit.objects.filter(Q(address__icontains=searchTerm) | Q(suggest__icontains=searchTerm)))
+    visits = paginating(request, Visit.objects.filter(Q(company__name__icontains=searchTerm) | Q(date__icontains=searchTerm) | Q(suggest__icontains=searchTerm)))
     return render(request, 'visits/visits.html', {'visits':visits})
