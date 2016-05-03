@@ -1,26 +1,124 @@
-<!doctype html>
-<html>
-<head>
-<title>拜訪紀錄單</title>
-<meta charset=utf-8>
-</head>
-<body>
-<h1>朝陽科技大學資訊學院</h1>
-<h2>【朝陽MIT資訊創新服務計畫】</h2>
-<h2>拜訪單</h2>
+{% extends 'main/main.html' %}
+{% block contentName %}拜訪單{% endblock %}
+{% block content %}
 
 {% if visit %}
-  <ul id=top>
-    <p>執行系所：{% for department in visit.department.all %}
-    {{department.name}}
-    {% endfor %}</p>
-    <p>紀錄(簽名):</p>
-    <p>執行老師：{% for teacher in visit.teacher.all %}
-    {{teacher.name}}
-    {% endfor %}</p>
-    <p>拜訪日期:{{visit.date}} {{visit.startTime}}~{{visit.endTime}}</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                          執行系所:
+                          {% for department in visit.department.all %}
+                            {{department.name}}
+                          {% endfor %}
+                        </th>
+                        <th>
+                          紀錄(簽名):                        
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                         參訪日期：
+                        </td>
+                        <td>
+                          {{visit.date}} {{visit.startTime}}~{{visit.endTime}}
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr class="default">
+                        <td>
+                          參訪機構(地址)：
+                        </td>
+                        <td>
+                          {{visit.company.name}}
+                        </td>
+                        <td>
+                          {{visit.address}}
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <tr class="default">
+                        <td>
+                          參訪次數：
+                        </td>
+                        <td>
+                          此為第{{visit.visitNum}}次參訪
+                        </td>
+                        <td>
+                          參訪老師：
+                        </td>
+                        <td>
+                          {% for teacher in visit.teacher.all %}
+                            {{teacher.name}}
+                          {% endfor %}
+                        </td>
+                    </tr>
+                    <tr class="default">
+                        <td>
+                            對象資料蒐集
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            03/04/2012
+                        </td>
+                        <td>
+                            Pending
+                        </td>
+                    </tr>
+                    <tr class="default">
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            TB - Monthly
+                        </td>
+                        <td>
+                            04/04/2012
+                        </td>
+                        <td>
+                            Call in to confirm
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <p></p>
+    <p>
+    </p>
+    <p>對象資料蒐集：
+      <tr>
+        <th>姓名</th><th>職稱</th><th>聯絡方式</th>
+      </tr>
+      {% for personnel in visit.personnel.all %}
+      <tr>
+	    <td>{{personnel.name}}</td>
+	    <td>{{personnel.name}}</td>
+	    <td>{{personnel.name}}</td>
+	  </tr>
+	  {% endfor %}  
+    
   </ul>
 {% endif %}  
 
-</body>
-</html>
+{% endblock %}

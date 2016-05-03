@@ -1,13 +1,6 @@
-<!doctype html>
-<html>
-<head>
-<title>拜訪紀錄單</title>
-<meta charset=utf-8>
-</head>
-<body>
-<h1>朝陽科技大學資訊學院</h1>
-<h2>【朝陽MIT資訊創新服務計畫】</h2>
-<h2>拜訪單</h2>
+{% extends 'main/main.html' %}
+{% block contentName %}新增拜訪單{% endblock %}
+{% block content %}
 
 <form method=post action="{% url 'visits:create' %}">
   {% csrf_token %}
@@ -18,6 +11,4 @@
   {% endfor %}
 <input type=submit value=送出>
 </form>
-
-</body>
-</html>
+{% endblock %}
