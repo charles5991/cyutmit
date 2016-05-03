@@ -33,9 +33,13 @@ def create(request):
 
 
 def getVisit(request, visitID):
-    visit = Visit.objects.get(id=visitID)
-    visit = VisitForm(instance=visit)
-    return render(request, 'visits/visit.html', {'visitForm':visit})
+    context = {}
+    try:
+        visit = Visit.objects.get(id=visitID)
+        context['visit'] = visit
+    except Visit.DoesNotExist:
+        pass
+    return render(request, 'visits/visit.html', context)
 
 
 def upload(request):

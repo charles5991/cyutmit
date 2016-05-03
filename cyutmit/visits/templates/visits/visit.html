@@ -9,11 +9,18 @@
 <h2>【朝陽MIT資訊創新服務計畫】</h2>
 <h2>拜訪單</h2>
 
-{% for field in visitForm %}
-  <p>{{field.label}}:{{field}}
-    {{field.errors}}
-  </p>
-{% endfor %}
+{% if visit %}
+  <ul id=top>
+    <p>執行系所：{% for department in visit.department.all %}
+    {{department.name}}
+    {% endfor %}</p>
+    <p>紀錄(簽名):</p>
+    <p>執行老師：{% for teacher in visit.teacher.all %}
+    {{teacher.name}}
+    {% endfor %}</p>
+    <p>拜訪日期:{{visit.date}} {{visit.startTime}}~{{visit.endTime}}</p>
+  </ul>
+{% endif %}  
 
 </body>
 </html>
