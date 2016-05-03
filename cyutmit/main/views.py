@@ -20,6 +20,15 @@ def admin_required(fun):
         return fun(request, *args, **kwargs)
     return auth
 
+def manager_required(fun):
+    def auth(request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return redirect(LOGIN_URL)
+        if request.user.userProfile.position!='manager':
+            return render(request, 'main/main.html')
+        return fun(request, *args, **kwargs)
+    return auth
+
 
 
 def upload(request):    
