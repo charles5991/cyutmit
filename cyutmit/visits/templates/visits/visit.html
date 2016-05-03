@@ -1,5 +1,5 @@
 {% extends 'main/main.html' %}
-{% block contentName %}拜訪單{% endblock %}
+{% block contentName %}{% endblock %}
 {% block content %}
 
 {% if visit %}
@@ -9,18 +9,14 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>
+                        <th colspan=2>
                           執行系所:
                           {% for department in visit.department.all %}
                             {{department.name}}
                           {% endfor %}
                         </th>
-                        <th>
-                          紀錄(簽名):                        
-                        </th>
-                        <th>
-                        </th>
-                        <th>
+                        <th colspan=2>
+                          紀錄(簽名): 
                         </th>
                     </tr>
                 </thead>
@@ -30,13 +26,10 @@
                          參訪日期：
                         </td>
                         <td>
-                          {{visit.date}} {{visit.startTime}}~{{visit.endTime}}
+                          {{visit.date}} 
                         </td>
-                        <td>
-                            
-                        </td>
-                        <td>
-
+                        <td colspan=2>
+                          {{visit.startTime}}~{{visit.endTime}}
                         </td>
                     </tr>
                     <tr class="default">
@@ -46,11 +39,8 @@
                         <td>
                           {{visit.company.name}}
                         </td>
-                        <td>
+                        <td colspan=2>
                           {{visit.address}}
-                        </td>
-                        <td>
-                            
                         </td>
                     </tr>
                     <tr class="default">
@@ -71,30 +61,98 @@
                     </tr>
                     <tr class="default">
                         <td>
-                            對象資料蒐集
+                            對象資料蒐集：
                         </td>
                         <td>
-                            
+                            <table>
+                                <tr>
+                                  <th>姓名</th>
+                                  <th>職稱</th>
+                                  <th>聯絡方式</th>
+                                </tr>
+                                {% for personnel in visit.personnel.all %}
+                                  <tr>
+                                    <td>{{personnel.name}}</td>
+                                    <td>{{personnel.name}}</td>
+                                    <td>{{personnel.name}}</td>
+                                  </tr>
+                                {% endfor %}   
+                            </table>                         
                         </td>
                         <td>
-                            03/04/2012
+                            實際參與人數：
                         </td>
                         <td>
-                            Pending
+                            本校師生{{visit.numSchoolPeople}}人<br>
+                            參訪機構{{visit.numCompanyPeople}}人
                         </td>
                     </tr>
                     <tr class="default">
                         <td>
-                            4
+                            拜訪內容與需求
                         </td>
-                        <td>
-                            TB - Monthly
+                        <td colspan=3>
+                            {{visit.content}}
                         </td>
+                    </tr>
+                    <tr class="default">
                         <td>
-                            04/04/2012
+                          需求類別：
                         </td>
+                        <td colspan=3>
+                          {% for demandCategory in visit.demandCategory.all %}
+                            {{demandCategory.name}}<br>
+                          {% endfor %}
+                        </td>
+                    </tr>
+                    <tr class="default">
                         <td>
-                            Call in to confirm
+                          後續處理<br>建議事項
+                        </td>
+                        <td colspan=3>
+                          <li>領域歸屬類別：
+                            <u>
+                              {% for researchArea in visit.researchArea.all %}
+                                {{researchArea.name}}
+                              {% endfor %}
+                            </u>
+                          </li>
+                          <li>建議（/約定）下次拜訪日期：<u>{{visit.nextDate}}</u></li>
+                          <li>建議委由
+                            <u>
+                              {% for followUpDepartment in visit.followUpDepartment.all %}
+                                {{followUpDepartment.name}}
+                              {% endfor %}
+                            </u>
+                            的
+                            <u>
+                              {% for followUpTeacher in visit.followUpTeacher.all %}
+                                {{followUpTeacher.name}}
+                              {% endfor %}
+                            </u>
+                            老師接手跟進
+                          </li>
+                          <li>建議可邀
+                            <u>
+                              {% for followUpPersonnel in visit.followUpPersonnel.all %}
+                                  {{followUpPersonnel.name}}
+                              {% endfor %}
+                            </u>
+                            蒞校進行
+                            <u>
+                              {% for activityType in visit.activityType.all %}
+                                {{activityType.name}}
+                              {% endfor %}
+                            </u>
+                          </li>
+                          <li>其他建議（請以文字或圖表進行敘述）<br><u>{{visit.suggest}}</u></li>
+                    </tr>
+                    <tr class="default">
+                        <td>
+                          拜訪照片：
+                        </td>
+                        <td colspan=3>
+                          <img src="{{visit.photoUrl}}">
                         </td>
                     </tr>
                 </tbody>
@@ -102,23 +160,6 @@
         </div>
     </div>
 </div>
-
-    <p></p>
-    <p>
-    </p>
-    <p>對象資料蒐集：
-      <tr>
-        <th>姓名</th><th>職稱</th><th>聯絡方式</th>
-      </tr>
-      {% for personnel in visit.personnel.all %}
-      <tr>
-	    <td>{{personnel.name}}</td>
-	    <td>{{personnel.name}}</td>
-	    <td>{{personnel.name}}</td>
-	  </tr>
-	  {% endfor %}  
-    
-  </ul>
 {% endif %}  
 
 {% endblock %}

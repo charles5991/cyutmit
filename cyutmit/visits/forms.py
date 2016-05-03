@@ -25,8 +25,12 @@ class VisitForm(forms.ModelForm):
     nextDate = forms.DateField(label='下次拜訪日期', widget=TextInput(attrs={'type':'date'}), required=False)
     followUpDepartment = forms.ModelMultipleChoiceField(label='委託科系', queryset=Department.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
     followUpTeacher = forms.ModelMultipleChoiceField(label='委託教師', queryset=Teacher.objects.all(), widget=forms.CheckboxSelectMultiple,required=False)
+    followUpPersonnel = forms.ModelMultipleChoiceField(label='建議人員', queryset=Personnel.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
+    followUpCompany = forms.ModelChoiceField(label='可邀請的公司', queryset=Company.objects.all(), required=False)
     activityType = forms.ModelMultipleChoiceField(label='活動', queryset=ActivityType.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
     suggest = forms.CharField(label='其他建議', widget=Textarea(attrs={'rows':5, 'cols':20}), required=False)
+    photoUrl = forms.URLField(label='照片', required=False)
+    
     
     class Meta:
         model = Visit
