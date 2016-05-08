@@ -1,0 +1,28 @@
+{% extends 'main/main.html' %}
+{% block contentName %}計劃介紹{% endblock %}
+{% block content %}
+
+<table id=newsTable>
+  <tr>
+    <th>標題</th>
+    <th>發布時間</th>
+  </tr>
+    {% for news in newsList %}
+  <tr>
+    {% if user.username == 'admin' %}
+      <td><a href={% url 'introduction:editIntroduction' introduction.id %}>{{Introduction.title}}</a></td>
+    {% else %}
+      <td><a href={% url 'introduction:viewIntroduction' introduction.id %}>{{Introduction.title}}</a></td>
+  </tr>
+    {% endif %}
+    <td>{{news.postTime}}</td>
+    {% endfor %}
+</table>
+<br>
+
+
+{% if user.username == 'admin' %}
+  <p><a href={% url 'introduction:addIntroduction' %}>新增</a></p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'main/main.html' %}
+{% block contentName %}計劃介紹內容{% endblock %}
+{% block content %}
+
+<p id=title>標題：{{introduction.title}}</p>
+<p>內容：{{introduction.content | safe}}</p>
+
+{% if user.username == 'admin' %}
+  <p><a href=#>儲存</a>&nasp;&nbsp;&nbsp;<a href=#>刪除</a></p>
+{% endif %}
+
+{% endblock %}

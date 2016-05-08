@@ -1,0 +1,22 @@
+{% extends 'main/main.html' %}
+{% load staticfiles %}
+{% block contentName %}新增{% endblock %}
+{% block content %}
+
+<form method=post action={% url 'introduction:addIntroduction' %}>
+  {% csrf_token %}
+  {{form.as_p}}
+ <p><input type=submit value=儲存>
+    <a href={% url 'introduction:introduction' %}>返回</a></p>
+</form>
+<input id=selectFile type=file accept="image/*">
+
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'main/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'main/js/tinymceInit.js' %}"></script>
+
+<script>
+</script>
+{% endblock %}

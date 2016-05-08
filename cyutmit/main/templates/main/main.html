@@ -5,11 +5,13 @@
   <ul>
     <li><a href={% url 'news:news' %}>最新消息</a></li>
     <li><a href={% url 'visits:visits' %}>拜訪單</a></li>
+    <li><a href={% url 'introduction:introduction' %}>計畫介紹</a></li>
   </ul>
 {% else %}
   <ul>
     <li><a href={% url 'news:news' %}>最新消息</a></li>
     <li><a href={% url 'visits:visits' %}>拜訪單</a></li>
+    <li><a href={% url 'introduction:introduction' %}>計畫介紹</a></li>
   </ul>
 {% endif %}
 
