@@ -9,6 +9,12 @@
  <p><input type=submit value=儲存>
 </form>
 <input id=selectFile type=file accept="image/*">
+  
+  
+<form id=deleteNews method=post action={% url 'news:deleteNews' news.id %}>
+  {% csrf_token %}
+ <p><input type=submit value=刪除>
+</form>
 
 <p><a href={% url 'introduction:introduction' %}>返回</a></p> 
 
